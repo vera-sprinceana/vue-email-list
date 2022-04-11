@@ -2,18 +2,16 @@ var app=new Vue(
     {
         el:'#root',
         data: {
-            emailRandom:'',
-            generatoreEmail:[],
+            generatoreEmail:[]
         },
         created(){
-            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-            .then((response) => {
-                while( this.generatoreEmail.length<10){
-                   this.emailRandom=response.data.response
-                    this.generatoreEmail.push(this.emailRandom)                    
-                    console.log(response.data.response) 
-                }
-            })
+            for(let i=0; i<10; i++){
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+                .then((response) => {
+                        this.generatoreEmail.push(response.data.response)       
+                })
+            }
+             console.log( this.generatoreEmail) 
         },
         methods:{
            
